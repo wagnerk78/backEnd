@@ -30,3 +30,14 @@ export async function getUserTasks(req, res) {
 
   res.status(200).json(tasks);
 }
+
+export async function completeTask(req, res) {
+  const { taskId } = req.params;
+
+  const updatedTask = await prisma.task.update({
+    where: { id: taskId },
+    data: { completed: true },
+  });
+
+  res.status(200).json({ message: 'Tarefa marcada como concluída', task: updatedTask });
+}

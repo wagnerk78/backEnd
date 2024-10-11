@@ -27,4 +27,5 @@ model Task {
   userId     String
   user       User   @relation(fields: [userId], references: [id])
   prioridade String
+  completed  Boolean  @default(false) 
 }
